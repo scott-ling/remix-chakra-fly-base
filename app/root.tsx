@@ -35,11 +35,11 @@ export function ErrorBoundary({ error }: { error: Error }) {
   console.error("Boundary:", error)
   return (
     <Document>
-      <VStack h="100vh" justify="center">
+      <VStack h="25vh" justify="center">
         <Heading>There was an error</Heading>
         <Text>{error.message}</Text>
         <hr />
-        <Text>Hey, developer, you should replace this with what you want your users to see.</Text>
+        <Text>Yeah, this needs some love...</Text>
       </VStack>
     </Document>
   )
@@ -49,11 +49,9 @@ export function CatchBoundary() {
   let caught = useCatch()
   let message
   switch (caught.status) {
-    case 401:
-      message = <Text>Oops! Looks like you tried to visit a page that you do not have access to.</Text>
-      break
+    // only catching 404s here, you can add additional cases here if needed
     case 404:
-      message = <Text>Oops! Looks like you tried to visit a page that does not exist.</Text>
+      message = <Text>Yeah, nothing to see here, move along...</Text>
       break
 
     default:
@@ -62,9 +60,9 @@ export function CatchBoundary() {
 
   return (
     <Document>
-      <VStack h="100vh" justify="center">
+      <VStack h="25vh" justify="center">
         <Heading>
-          {caught.status}: {caught.statusText}
+          {caught.status}
         </Heading>
         {message}
       </VStack>
@@ -78,7 +76,6 @@ interface DocumentProps {
 
 // uncomment and add custom theme stuff below (or use an import)
 // const eTheme = {}
-
 const theme = extendTheme({});
 
 
